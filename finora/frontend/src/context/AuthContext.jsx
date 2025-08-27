@@ -1,14 +1,14 @@
 import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios';
 
 const AuthContext = createContext();
 
 // This is a utility function to set the auth token for all future axios requests
 const setAuthToken = (token) => {
   if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   } else {
-    delete axios.defaults.headers.common['Authorization'];
+    delete api.defaults.headers.common['Authorization'];
   }
 };
 
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       if (storedToken) {
         setAuthToken(storedToken);
         try {
-          const res = await axios.get('http://localhost:3001/api/auth/me');
+          const res = await api.get('/api/auth/me');
           setUser(res.data.data);
           setIsAuthenticated(true);
         } catch (err) {

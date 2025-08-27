@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api/axios';
 import EditBalanceModal from '../../components/admin/EditBalanceModal';
 
 const UserDetails = () => {
@@ -15,10 +15,10 @@ const UserDetails = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const userRes = await axios.get(`http://localhost:3001/api/admin/users/${id}`);
+      const userRes = await api.get(`/api/admin/users/${id}`);
       setUser(userRes.data.data);
 
-      const accountsRes = await axios.get(`http://localhost:3001/api/admin/users/${id}/accounts`);
+      const accountsRes = await api.get(`/api/admin/users/${id}/accounts`);
       setAccounts(accountsRes.data.data);
 
       setError(null);
@@ -41,7 +41,7 @@ const UserDetails = () => {
 
   const handleSaveBalance = async (accountId, data) => {
     try {
-      await axios.put(`http://localhost:3001/api/admin/accounts/${accountId}`, data);
+      await api.put(`/api/admin/accounts/${accountId}`, data);
       setEditBalanceModalOpen(false);
       setSelectedAccount(null);
       fetchData(); // Refresh data

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api/axios';
 import EditUserModal from '../../components/admin/EditUserModal';
 
 const UserManagement = () => {
@@ -13,7 +13,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:3001/api/admin/users');
+      const res = await api.get('/api/admin/users');
       setUsers(res.data.data);
       setError(null);
     } catch (err) {
@@ -35,7 +35,7 @@ const UserManagement = () => {
 
   const handleSaveUser = async (userId, data) => {
     try {
-      await axios.put(`http://localhost:3001/api/admin/users/${userId}`, data);
+      await api.put(`/api/admin/users/${userId}`, data);
       setEditModalOpen(false);
       setSelectedUser(null);
       fetchUsers(); // Refresh the list
@@ -48,7 +48,7 @@ const UserManagement = () => {
   const handleDeleteClick = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
       try {
-        await axios.delete(`http://localhost:3001/api/admin/users/${userId}`);
+        await api.delete(`/api/admin/users/${userId}`);
         fetchUsers(); // Refresh the list
       } catch (err) {
         console.error('Failed to delete user', err);

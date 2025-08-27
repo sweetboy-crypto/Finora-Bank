@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import AuthContext from '../context/AuthContext';
 
 const Login = () => {
@@ -21,9 +21,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const user = { email, password };
-      const config = { headers: { 'Content-Type': 'application/json' } };
-      const body = JSON.stringify(user);
-      const res = await axios.post('http://localhost:3001/api/auth/login', body, config);
+      const res = await api.post('/api/auth/login', user);
 
       login(res.data.token);
       navigate('/dashboard');

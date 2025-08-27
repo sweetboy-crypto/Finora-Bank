@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
-import axios from 'axios';
+import api from '../api/axios';
 import DepositModal from '../components/dashboard/DepositModal';
 import WithdrawModal from '../components/dashboard/WithdrawModal';
 import AddAccountModal from '../components/dashboard/AddAccountModal';
@@ -23,12 +23,12 @@ const Dashboard = () => {
     if (user) {
       try {
         setLoading(true);
-        const accountsRes = await axios.get('http://localhost:3001/api/accounts');
+        const accountsRes = await api.get('/api/accounts');
         setAccounts(accountsRes.data.data);
 
         if (accountsRes.data.data.length > 0) {
           const primaryAccountId = accountsRes.data.data[0]._id;
-          const transactionsRes = await axios.get(`http://localhost:3001/api/accounts/${primaryAccountId}/transactions`);
+          const transactionsRes = await api.get(`/api/accounts/${primaryAccountId}/transactions`);
           setTransactions(transactionsRes.data.data);
         }
         setError(null);
@@ -48,10 +48,9 @@ const Dashboard = () => {
   }, [user, authLoading]);
 
   const handleDeposit = async (data) => {
-    // Assuming deposit is for the primary account for simplicity
     if (!primaryAccount) return;
     try {
-      await axios.post(`http://localhost:3001/api/accounts/${primaryAccount._id}/transactions/deposit`, data);
+      await api.post(`/api/accounts/${primaryAccount._id}/transactions/deposit`, data);
       setDepositModalOpen(false);
       fetchData();
     } catch (err) { console.error('Deposit failed', err); }
@@ -60,7 +59,7 @@ const Dashboard = () => {
   const handleWithdraw = async (data) => {
     if (!primaryAccount) return;
     try {
-      await axios.post(`http://localhost:3001/api/accounts/${primaryAccount._id}/transactions/withdraw`, data);
+      await api.post(`/api/accounts/${primaryAccount._id}/transactions/withdraw`, data);
       setWithdrawModalOpen(false);
       fetchData();
     } catch (err) { console.error('Withdrawal failed', err); }
@@ -68,7 +67,7 @@ const Dashboard = () => {
 
   const handleAddAccount = async (data) => {
     try {
-      await axios.post('http://localhost:3001/api/accounts', data);
+      await api.post('/api/accounts', data);
       setAddAccountModalOpen(false);
       fetchData();
     } catch (err) { console.error('Failed to add account', err); }
@@ -76,7 +75,7 @@ const Dashboard = () => {
 
   const handleTransfer = async (data) => {
     try {
-      await axios.post('http://localhost:3001/api/transactions/transfer', data);
+      await api.post('/api/transactions/transfer', data);
       setTransferModalOpen(false);
       fetchData();
     } catch (err) { console.error('Transfer failed', err); }
@@ -97,7 +96,9 @@ const Dashboard = () => {
             </div>
             <div className="mt-4 flex md:mt-0 md:ml-4">
               <Link to="/cards" className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">Manage Cards</Link>
+              <button type="button" onClick={() => setAddAccountModalOpen(true)} className="ml-3 inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">New Account</button>
               <button type="button" onClick={() => setTransferModalOpen(true)} className="ml-3 inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">Transfer</button>
+              <button type="button" onClick={() => setWithdrawModalOpen(true)} className="ml-3 inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">Withdraw</button>
               <button type="button" onClick={() => setDepositModalOpen(true)} className="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90">Deposit</button>
             </div>
           </header>
