@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const Account = require('../models/Account');
 const Portfolio = require('../models/Portfolio');
+const Holding = require('../models/Holding');
+const Asset = require('../models/Asset');
 
 // @desc    Register user
 // @route   POST /api/auth/signup
@@ -30,7 +32,18 @@ exports.signup = async (req, res, next) => {
     });
 
     // Create a default investment portfolio for the new user
-    await Portfolio.create({ user: user._id });
+    const portfolio = await Portfolio.create({ user: user._id });
+
+    // Give the user a starter holding
+    const starterAsset = await Asset.findOne(); // Find the first available asset
+    if (starterAsset) {
+      await Holding.create({
+        portfolio: portfolio._id,
+        asset: starterAsset._id,
+        quantity: 10, // Give them 10 shares
+        purchasePrice: starterAsset.currentPrice
+      });
+    }
 
     sendTokenResponse(user, 201, res);
   } catch (err) {
