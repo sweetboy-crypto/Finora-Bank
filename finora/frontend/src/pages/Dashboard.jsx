@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AuthContext from '../context/AuthContext.jsx';
 import api from '../api/axios';
-import PageWrapper from '../components/PageWrapper';
-import DashboardHeader from '../components/dashboard/DashboardHeader';
-import AccountList from '../components/dashboard/AccountList';
-import TransactionList from '../components/dashboard/TransactionList';
-import DepositModal from '../components/dashboard/DepositModal';
-import WithdrawModal from '../components/dashboard/WithdrawModal';
-import AddAccountModal from '../components/dashboard/AddAccountModal';
-import TransferModal from '../components/dashboard/TransferModal';
+import PageWrapper from '../components/PageWrapper.jsx';
+import DashboardHeader from '../components/dashboard/DashboardHeader.jsx';
+import AccountList from '../components/dashboard/AccountList.jsx';
+import TransactionList from '../components/dashboard/TransactionList.jsx';
+import DepositModal from '../components/dashboard/DepositModal.jsx';
+import WithdrawModal from '../components/dashboard/WithdrawModal.jsx';
+import AddAccountModal from '../components/dashboard/AddAccountModal.jsx';
+import TransferModal from '../components/dashboard/TransferModal.jsx';
 
 const Dashboard = () => {
   const { user, loading: authLoading } = useContext(AuthContext);

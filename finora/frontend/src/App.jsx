@@ -2,36 +2,36 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Layouts
-import Layout from './components/Layout';
-import AdminLayout from './components/admin/AdminLayout';
+import Layout from './components/Layout.jsx';
+import AdminLayout from './components/admin/AdminLayout.jsx';
 
 // Route Guards
-import PrivateRoute from './components/PrivateRoute';
-import AdminRoute from './components/AdminRoute';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import AdminRoute from './components/AdminRoute.jsx';
 
 // Main Pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
-import Invest from './pages/Invest';
-import Cards from './pages/Cards';
+import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Contact from './pages/Contact.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import Invest from './pages/Invest.jsx';
+import Cards from './pages/Cards.jsx';
 
 // Content Pages
-import CheckingPage from './pages/content/CheckingPage';
-import SavingsPage from './pages/content/SavingsPage';
-import FAQPage from './pages/content/FAQPage';
-import CareersPage from './pages/content/CareersPage';
-import PrivacyPolicyPage from './pages/content/PrivacyPolicyPage';
-import TermsOfServicePage from './pages/content/TermsOfServicePage';
+import CheckingPage from './pages/content/CheckingPage.jsx';
+import SavingsPage from './pages/content/SavingsPage.jsx';
+import FAQPage from './pages/content/FAQPage.jsx';
+import CareersPage from './pages/content/CareersPage.jsx';
+import PrivacyPolicyPage from './pages/content/PrivacyPolicyPage.jsx';
+import TermsOfServicePage from './pages/content/TermsOfServicePage.jsx';
 
 // Admin Pages
-import AdminDashboard from './pages/admin/AdminDashboard';
-import UserManagement from './pages/admin/UserManagement';
-import UserDetails from './pages/admin/UserDetails';
-import TransactionManagement from './pages/admin/TransactionManagement';
+import AdminDashboard from './pages/admin/AdminDashboard.jsx';
+import UserManagement from './pages/admin/UserManagement.jsx';
+import UserDetails from './pages/admin/UserDetails.jsx';
+import TransactionManagement from './pages/admin/TransactionManagement.jsx';
 
 
 const App = () => {

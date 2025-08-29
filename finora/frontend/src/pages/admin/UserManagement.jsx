@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/axios';
-import EditUserModal from '../../components/admin/EditUserModal';
+import EditUserModal from '../../components/admin/EditUserModal.jsx';
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);

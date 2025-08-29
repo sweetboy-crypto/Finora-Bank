@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../api/axios';
-import EditBalanceModal from '../../components/admin/EditBalanceModal';
-import EditHoldingModal from '../../components/admin/EditHoldingModal';
+import EditBalanceModal from '../../components/admin/EditBalanceModal.jsx';
+import EditHoldingModal from '../../components/admin/EditHoldingModal.jsx';
 
 const UserDetails = () => {
   const { id } = useParams();
