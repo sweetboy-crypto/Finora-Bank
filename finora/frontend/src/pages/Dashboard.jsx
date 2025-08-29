@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import AuthContext from '../context/AuthContext';
+import AuthContext from '../context/AuthContext.jsx';
 import api from '../api/axios';
 import PageWrapper from '../components/PageWrapper';
 import DashboardHeader from '../components/dashboard/DashboardHeader';
