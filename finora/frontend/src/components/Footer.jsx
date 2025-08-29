@@ -21,16 +21,16 @@ const Footer = () => {
               <div>
                 <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Solutions</h3>
                 <ul className="mt-4 space-y-4">
-                  <li><Link to="#" className="text-base text-gray-500 hover:text-gray-900">Checking</Link></li>
-                  <li><Link to="#" className="text-base text-gray-500 hover:text-gray-900">Savings</Link></li>
-                  <li><Link to="#" className="text-base text-gray-500 hover:text-gray-900">Investing</Link></li>
+                  <li><Link to="/checking" className="text-base text-gray-500 hover:text-gray-900">Checking</Link></li>
+                  <li><Link to="/savings" className="text-base text-gray-500 hover:text-gray-900">Savings</Link></li>
+                  <li><Link to="/invest" className="text-base text-gray-500 hover:text-gray-900">Investing</Link></li>
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
                 <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
                 <ul className="mt-4 space-y-4">
                   <li><Link to="/contact" className="text-base text-gray-500 hover:text-gray-900">Contact</Link></li>
-                  <li><Link to="#" className="text-base text-gray-500 hover:text-gray-900">FAQ</Link></li>
+                  <li><Link to="/faq" className="text-base text-gray-500 hover:text-gray-900">FAQ</Link></li>
                 </ul>
               </div>
             </div>
@@ -39,14 +39,14 @@ const Footer = () => {
                 <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
                 <ul className="mt-4 space-y-4">
                   <li><Link to="/about" className="text-base text-gray-500 hover:text-gray-900">About</Link></li>
-                  <li><Link to="#" className="text-base text-gray-500 hover:text-gray-900">Careers</Link></li>
+                  <li><Link to="/careers" className="text-base text-gray-500 hover:text-gray-900">Careers</Link></li>
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
                 <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
                 <ul className="mt-4 space-y-4">
-                  <li><Link to="#" className="text-base text-gray-500 hover:text-gray-900">Privacy</Link></li>
-                  <li><Link to="#" className="text-base text-gray-500 hover:text-gray-900">Terms</Link></li>
+                  <li><Link to="/privacy" className="text-base text-gray-500 hover:text-gray-900">Privacy</Link></li>
+                  <li><Link to="/terms" className="text-base text-gray-500 hover:text-gray-900">Terms</Link></li>
                 </ul>
               </div>
             </div>

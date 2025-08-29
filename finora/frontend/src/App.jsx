@@ -19,6 +19,14 @@ import Dashboard from './pages/Dashboard';
 import Invest from './pages/Invest';
 import Cards from './pages/Cards';
 
+// Content Pages
+import CheckingPage from './pages/content/CheckingPage';
+import SavingsPage from './pages/content/SavingsPage';
+import FAQPage from './pages/content/FAQPage';
+import CareersPage from './pages/content/CareersPage';
+import PrivacyPolicyPage from './pages/content/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/content/TermsOfServicePage';
+
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
 import UserManagement from './pages/admin/UserManagement';
@@ -35,6 +43,12 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="checking" element={<CheckingPage />} />
+        <Route path="savings" element={<SavingsPage />} />
+        <Route path="faq" element={<FAQPage />} />
+        <Route path="careers" element={<CareersPage />} />
+        <Route path="privacy" element={<PrivacyPolicyPage />} />
+        <Route path="terms" element={<TermsOfServicePage />} />
 
         <Route path="" element={<PrivateRoute />}>
           <Route path="dashboard" element={<Dashboard />} />
