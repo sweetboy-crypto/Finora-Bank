@@ -5,6 +5,7 @@ const AdminLayout = () => {
   const navigation = [
     { name: 'Dashboard', href: '/admin' },
     { name: 'Users', href: '/admin/users' },
+    { name: 'Transactions', href: '/admin/transactions' },
     // Add more admin links here
   ];
 

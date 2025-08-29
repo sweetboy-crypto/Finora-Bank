@@ -24,8 +24,10 @@ exports.signup = async (req, res, next) => {
     });
 
     // Create a default checking account for the new user with a bonus
+    const accountNumber = Math.floor(1000000000 + Math.random() * 9000000000).toString();
     await Account.create({
       user: user._id,
+      accountNumber,
       accountName: 'Primary Checking',
       accountType: 'Checking',
       balance: 100, // Welcome bonus!

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
 
-const AddAccountModal = ({ isOpen, onClose, onAccountAdd }) => {
+const AddAccountModal = ({ isOpen, onClose, onAccountAdd, error }) => {
   const [accountName, setAccountName] = useState('');
   const [accountType, setAccountType] = useState('Savings');
 
@@ -15,9 +15,7 @@ const AddAccountModal = ({ isOpen, onClose, onAccountAdd }) => {
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <div>
-            <label htmlFor="accountName" className="block text-sm font-medium text-gray-700">
-              Account Name
-            </label>
+            <label htmlFor="accountName" className="block text-sm font-medium text-gray-700">Account Name</label>
             <div className="mt-1">
               <input
                 type="text"
@@ -32,9 +30,7 @@ const AddAccountModal = ({ isOpen, onClose, onAccountAdd }) => {
             </div>
           </div>
           <div>
-            <label htmlFor="accountType" className="block text-sm font-medium text-gray-700">
-              Account Type
-            </label>
+            <label htmlFor="accountType" className="block text-sm font-medium text-gray-700">Account Type</label>
             <select
               id="accountType"
               name="accountType"
@@ -44,10 +40,10 @@ const AddAccountModal = ({ isOpen, onClose, onAccountAdd }) => {
             >
               <option>Savings</option>
               <option>Investment</option>
-              {/* Add other types as needed */}
             </select>
           </div>
         </div>
+        {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
           <button
             type="submit"

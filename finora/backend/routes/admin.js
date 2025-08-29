@@ -5,7 +5,11 @@ const {
     updateUser,
     deleteUser,
     getUserAccounts,
-    updateUserAccountBalance
+    updateUserAccountBalance,
+    getStats,
+    getUserPortfolio,
+    getAllTransactions,
+    updateUserHolding
 } = require('../controllers/adminController');
 
 const router = express.Router();
@@ -30,5 +34,17 @@ router.route('/users/:userId/accounts')
 
 router.route('/accounts/:accountId')
     .put(updateUserAccountBalance);
+
+router.route('/stats')
+    .get(getStats);
+
+router.route('/users/:userId/portfolio')
+    .get(getUserPortfolio);
+
+router.route('/transactions')
+    .get(getAllTransactions);
+
+router.route('/holdings/:holdingId')
+    .put(updateUserHolding);
 
 module.exports = router;

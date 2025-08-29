@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios';
 import AddCardModal from '../components/dashboard/AddCardModal';
 
 const Cards = () => {
@@ -11,7 +11,7 @@ const Cards = () => {
   const fetchCards = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:3001/api/cards');
+      const res = await api.get('/api/cards');
       setCards(res.data.data);
       setError(null);
     } catch (err) {
@@ -28,7 +28,7 @@ const Cards = () => {
 
   const handleCardAdd = async (data) => {
     try {
-      await axios.post('http://localhost:3001/api/cards', data);
+      await api.post('/api/cards', data);
       setAddCardModalOpen(false);
       fetchCards(); // Refresh the list
     } catch (err) {

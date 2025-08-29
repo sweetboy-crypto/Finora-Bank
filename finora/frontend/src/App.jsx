@@ -31,6 +31,7 @@ import TermsOfServicePage from './pages/content/TermsOfServicePage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import UserManagement from './pages/admin/UserManagement';
 import UserDetails from './pages/admin/UserDetails';
+import TransactionManagement from './pages/admin/TransactionManagement';
 
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<UserManagement />} />
           <Route path="users/:id" element={<UserDetails />} />
+          <Route path="transactions" element={<TransactionManagement />} />
         </Route>
       </Route>
     </Routes>

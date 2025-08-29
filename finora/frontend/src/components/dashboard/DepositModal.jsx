@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
 
-const DepositModal = ({ isOpen, onClose, onDeposit }) => {
+const DepositModal = ({ isOpen, onClose, onDeposit, error }) => {
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
 
@@ -52,6 +52,7 @@ const DepositModal = ({ isOpen, onClose, onDeposit }) => {
             </div>
           </div>
         </div>
+        {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
           <button
             type="submit"

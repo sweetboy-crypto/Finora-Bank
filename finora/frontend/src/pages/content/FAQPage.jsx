@@ -1,4 +1,5 @@
 import React from 'react';
+import PageWrapper from '../../components/PageWrapper';
 
 const faqs = [
   {
@@ -21,21 +22,23 @@ const faqs = [
 
 const FAQPage = () => {
   return (
-    <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-gray-900 text-center">Frequently Asked Questions</h1>
-        <div className="mt-12">
-          <dl className="space-y-10">
-            {faqs.map((faq) => (
-              <div key={faq.question}>
-                <dt className="text-lg font-medium text-gray-900">{faq.question}</dt>
-                <dd className="mt-2 text-base text-gray-500">{faq.answer}</dd>
-              </div>
-            ))}
-          </dl>
+    <PageWrapper>
+      <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-extrabold text-gray-900 text-center">Frequently Asked Questions</h1>
+          <div className="mt-12">
+            <dl className="space-y-10">
+              {faqs.map((faq) => (
+                <div key={faq.question}>
+                  <dt className="text-lg font-medium text-gray-900">{faq.question}</dt>
+                  <dd className="mt-2 text-base text-gray-500">{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 

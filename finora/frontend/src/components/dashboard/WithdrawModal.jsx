@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
 
-const WithdrawModal = ({ isOpen, onClose, onWithdraw }) => {
+const WithdrawModal = ({ isOpen, onClose, onWithdraw, error }) => {
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
 
@@ -15,9 +15,7 @@ const WithdrawModal = ({ isOpen, onClose, onWithdraw }) => {
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <div>
-            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
-              Amount
-            </label>
+            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
             <div className="mt-1 relative rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span className="text-gray-500 sm:text-sm">$</span>
@@ -35,9 +33,7 @@ const WithdrawModal = ({ isOpen, onClose, onWithdraw }) => {
             </div>
           </div>
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-              Description
-            </label>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
             <div className="mt-1">
               <input
                 type="text"
@@ -52,6 +48,7 @@ const WithdrawModal = ({ isOpen, onClose, onWithdraw }) => {
             </div>
           </div>
         </div>
+        {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
           <button
             type="submit"
