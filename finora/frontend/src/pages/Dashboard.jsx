@@ -27,17 +27,31 @@ const Dashboard = () => {
     if (user) {
       try {
         setLoading(true);
-        const accountsRes = await api.get('/api/accounts');
-        setAccounts(accountsRes.data.data);
-
-        if (accountsRes.data.data.length > 0) {
-          const primaryAccountId = accountsRes.data.data[0]._id;
-          const transactionsRes = await api.get(`/api/accounts/${primaryAccountId}/transactions`);
-          setTransactions(transactionsRes.data.data);
-        }
         setError(null);
+        setTransactions([]);
+
+        const accountsRes = await api.get('/api/accounts');
+
+        if (accountsRes.data && Array.isArray(accountsRes.data.data) && accountsRes.data.data.length > 0) {
+          const userAccounts = accountsRes.data.data;
+          setAccounts(userAccounts);
+
+          const primaryAccount = userAccounts[0];
+          if (primaryAccount && primaryAccount._id) {
+            const transactionsRes = await api.get(`/api/accounts/${primaryAccount._id}/transactions`);
+            if (transactionsRes.data && Array.isArray(transactionsRes.data.data)) {
+              setTransactions(transactionsRes.data.data);
+            }
+          }
+        } else {
+          setAccounts([]);
+        }
+
       } catch (err) {
+        console.error("Dashboard fetch error:", err);
         setError('Could not load your dashboard data. Please try again later.');
+        setAccounts([]);
+        setTransactions([]);
       } finally {
         setLoading(false);
       }

@@ -9,7 +9,9 @@ const AccountList = ({ accounts }) => {
           <div key={account._id} className="bg-white overflow-hidden shadow rounded-lg p-5">
             <dl>
               <dt className="text-sm font-medium text-gray-500 truncate">{account.accountName} ({account.accountType})</dt>
-              <dd className="text-xs text-gray-400">...{account.accountNumber.slice(-4)}</dd>
+              {account.accountNumber && typeof account.accountNumber === 'string' && (
+                <dd className="text-xs text-gray-400">...{account.accountNumber.slice(-4)}</dd>
+              )}
               <dd className="mt-1 text-3xl font-semibold text-gray-900">${account.balance.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</dd>
             </dl>
           </div>

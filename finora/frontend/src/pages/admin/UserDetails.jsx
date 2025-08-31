@@ -34,7 +34,7 @@ const UserDetails = () => {
     } catch (err) {
       console.error('Failed to fetch user details', err);
       if (err.response && err.response.status === 404) {
-        setPortfolio(null); // It's okay if a portfolio or other parts aren't found
+        setPortfolio(null);
       } else {
         setError('Could not load user details.');
       }
@@ -80,12 +80,51 @@ const UserDetails = () => {
   return (
     <>
       <div>
-        {/* ... User Details ... */}
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-gray-900">Bank Accounts</h2>
-          {/* ... Bank Accounts List ... */}
+        <h1 className="text-2xl font-semibold text-gray-900">User Details</h1>
+        <div className="mt-4 bg-white shadow overflow-hidden sm:rounded-lg">
+          <div className="px-4 py-5 sm:px-6">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">{user.name}</h3>
+            <p className="mt-1 max-w-2xl text-sm text-gray-500">{user.email}</p>
+          </div>
+          <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+            <dl className="sm:divide-y sm:divide-gray-200">
+              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">Role</dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.role}</dd>
+              </div>
+              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">Joined</dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{new Date(user.createdAt).toLocaleDateString()}</dd>
+              </div>
+            </dl>
+          </div>
         </div>
 
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold text-gray-900">Bank Accounts</h2>
+          <div className="mt-4 bg-white shadow overflow-hidden sm:rounded-md">
+            <ul role="list" className="divide-y divide-gray-200">
+              {accounts.length > 0 ? accounts.map(account => (
+                <li key={account._id}>
+                  <div className="px-4 py-4 sm:px-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-primary truncate">{account.accountName} ({account.accountType})</p>
+                        {account.accountNumber && <p className="text-xs text-gray-500">Acct #: {account.accountNumber}</p>}
+                      </div>
+                      <div className="flex items-center">
+                        <p className="text-sm font-medium text-gray-900">${account.balance.toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
+                        <button onClick={() => handleEditBalanceClick(account)} className="ml-4 text-sm font-medium text-primary hover:text-primary/90">Edit Balance</button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              )) : <p className="px-4 py-4 sm:px-6 text-gray-500">This user has no bank accounts.</p>}
+            </ul>
+          </div>
+        </div>
+
+        {/* Investment Portfolio Section */}
         <div className="mt-8">
             <h2 className="text-xl font-semibold text-gray-900">Investment Portfolio</h2>
             {portfolio ? (
